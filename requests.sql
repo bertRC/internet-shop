@@ -8,14 +8,14 @@ CREATE TABLE products
 );
 
 INSERT INTO products(name, quantity, price)
-VALUES ('Nukeproof Mega 275 Carbon Pro Bike GX Eagle 2019', 5, 204000),
-       ('Vitus Sommet Mountain Bike (NX - 1x11) 2019', 7, 99000),
-       ('Marin Wolf Ridge 8 Full Suspension Bike 2019', 6, 177000),
-       ('Cube Reaction TM Pro 27.5 Mountain Bike 2019', 10, 59400),
-       ('Marin Pine Mountain 27.5 Hardtail Bike 2019', 12, 37500),
-       ('Nukeproof Mega 275 Alloy Pro Bike GX Eagle 2019', 6, 170000),
-       ('Nukeproof Mega 275 Carbon RS Bike XO1 Eagle 2019', 3, 255000),
-       ('Vitus Sommet CRS Mountain Bike (GX Eagle) 2019', 6, 160000);
+VALUES ('Unicorn Writing Set', 50, 120),
+       ('A5 Case Bound Dream It Notebook', 70, 160),
+       ('A5 Unicorn Plush Notebook', 60, 320),
+       ('Basic Stationery Bundle', 100, 400),
+       ('Sticky Notes Memo Set', 120, 80),
+       ('ArtWorkz Colouring Collection Bundle', 60, 720),
+       ('75 Piece Wooden Case Stationery Set', 30, 800),
+       ('15 Piece Glitter Stationery Set - Assorted', 60, 560);
 
 CREATE TABLE users
 (
@@ -29,3 +29,36 @@ VALUES ('iivanov88', 'Ivan Ivanov'),
        ('ppetrov89', 'Petr Petrov'),
        ('iammax', 'Maksim Maksimov'),
        ('mrbones', 'Konstantin Konstantinov');
+
+CREATE TABLE orders
+(
+    id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES users,
+    status  TEXT DEFAULT 'NEW'
+);
+
+CREATE TABLE sales
+(
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id   INTEGER REFERENCES orders   NOT NULL,
+    product_id INTEGER REFERENCES products NOT NULL,
+    quantity   INTEGER                     NOT NULL CHECK ( quantity > 0 ),
+    price      INTEGER                     NOT NULL CHECK ( price >= 0 )
+);
+
+INSERT INTO orders(user_id)
+VALUES (1),
+       (2),
+       (NULL),
+       (3),
+       (4);
+
+INSERT INTO sales(order_id, product_id, quantity, price)
+VALUES (1, 1, 5, 120),
+       (1, 6, 1, 720),
+       (2, 2, 2, 160),
+       (3, 4, 1, 400),
+       (3, 7, 1, 800),
+       (4, 3, 10, 300),
+       (5, 5, 5, 80),
+       (5, 8, 1, 560);
