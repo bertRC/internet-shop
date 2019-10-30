@@ -17,3 +17,15 @@ VALUES ('Nukeproof Mega 275 Carbon Pro Bike GX Eagle 2019', 5, 204000),
        ('Nukeproof Mega 275 Carbon RS Bike XO1 Eagle 2019', 3, 255000),
        ('Vitus Sommet CRS Mountain Bike (GX Eagle) 2019', 6, 160000);
 
+CREATE TABLE users
+(
+    id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    login TEXT NOT NULL,
+    name  TEXT NOT NULL
+);
+
+INSERT INTO users(login, name)
+VALUES ('iivanov88', 'Ivan Ivanov'),
+       ('ppetrov89', 'Petr Petrov'),
+       ('iammax', 'Maksim Maksimov'),
+       ('mrbones', 'Konstantin Konstantinov');
