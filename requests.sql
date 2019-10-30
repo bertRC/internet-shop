@@ -62,3 +62,14 @@ VALUES (1, 1, 5, 120),
        (4, 3, 10, 300),
        (5, 5, 5, 80),
        (5, 8, 1, 560);
+
+UPDATE orders
+SET status = 'PAID'
+WHERE id = 1;
+
+INSERT INTO orders(id, user_id)
+VALUES (6, 1);
+
+INSERT INTO sales(order_id, product_id, quantity, price)
+VALUES (6, 3, 4, 320),
+       (6, 5, 4, 80);
