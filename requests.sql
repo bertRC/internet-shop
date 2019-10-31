@@ -149,3 +149,32 @@ VALUES (1, 4, 2, 400),
        (3, 1, 2, 120),
        (3, 2, 4, 160);
 
+SELECT c.id cart_id, p.name, i.quantity, i.price, (i.quantity * i.price) subtotal
+FROM cart c,
+     products p,
+     items i
+WHERE (c.id = i.cart_id)
+  AND (p.id = i.product_id)
+  AND (c.user_id = 3);
+
+SELECT u.login, sum(i.quantity * i.price) total
+FROM cart c,
+     users u,
+     items i
+WHERE (c.id = i.cart_id)
+  AND (c.user_id = u.id)
+  AND (c.user_id = 3);
+
+SELECT c.id cart_id, p.name, i.quantity, i.price, (i.quantity * i.price) subtotal
+FROM cart c,
+     products p,
+     items i
+WHERE (c.id = i.cart_id)
+  AND (p.id = i.product_id)
+  AND (c.user_id IS NULL);
+
+SELECT sum(i.quantity * i.price) total
+FROM cart c,
+     items i
+WHERE (c.id = i.cart_id)
+  AND (c.user_id IS NULL);
