@@ -73,3 +73,45 @@ VALUES (6, 1);
 INSERT INTO sales(order_id, product_id, quantity, price)
 VALUES (6, 3, 4, 320),
        (6, 5, 4, 80);
+
+UPDATE products
+SET available = 0,
+    quantity  = 0
+WHERE id = 7;
+
+SELECT o.id order_id, p.name, s.quantity, s.price, s.quantity * s.price subtotal
+FROM orders o,
+     products p,
+     sales s
+WHERE (o.id = s.order_id)
+  AND (p.id = s.product_id);
+
+SELECT o.id order_id, p.name, s.quantity, s.price, s.quantity * s.price subtotal
+FROM orders o,
+     products p,
+     sales s
+WHERE (o.id = s.order_id)
+  AND (p.id = s.product_id)
+  AND (o.user_id = 1);
+
+SELECT o.id order_id, sum(s.quantity * s.price) total, o.status
+FROM orders o,
+     sales s
+WHERE (o.id = s.order_id)
+  AND (o.user_id = 1)
+GROUP BY o.id;
+
+SELECT o.id order_id, p.name, s.quantity, s.price, s.quantity * s.price subtotal
+FROM orders o,
+     products p,
+     sales s
+WHERE (o.id = s.order_id)
+  AND (p.id = s.product_id)
+  AND (o.user_id IS NULL);
+
+SELECT o.id order_id, sum(s.quantity * s.price) total, o.status
+FROM orders o,
+     sales s
+WHERE (o.id = s.order_id)
+  AND (o.user_id IS NULL)
+GROUP BY o.id;
