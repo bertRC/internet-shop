@@ -130,7 +130,7 @@ CREATE TABLE cart
 CREATE TABLE items
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
-    cart_id    INTEGER REFERENCES orders   NOT NULL,
+    cart_id    INTEGER REFERENCES cart   NOT NULL,
     product_id INTEGER REFERENCES products NOT NULL,
     quantity   INTEGER                     NOT NULL CHECK ( quantity > 0 ),
     price      INTEGER                     NOT NULL CHECK ( price >= 0 )
