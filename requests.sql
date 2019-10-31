@@ -101,6 +101,10 @@ WHERE (o.id = s.order_id)
   AND (o.user_id = 1)
 GROUP BY o.id;
 
+UPDATE orders
+SET status = 'CANCELED'
+WHERE id = 3;
+
 SELECT o.id order_id, p.name, s.quantity, s.price, s.quantity * s.price subtotal
 FROM orders o,
      products p,
@@ -144,3 +148,4 @@ VALUES (1, 4, 2, 400),
        (2, 4, 1, 400),
        (3, 1, 2, 120),
        (3, 2, 4, 160);
+
