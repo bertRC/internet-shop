@@ -115,3 +115,32 @@ FROM orders o,
 WHERE (o.id = s.order_id)
   AND (o.user_id IS NULL)
 GROUP BY o.id;
+
+
+CREATE TABLE cart
+(
+    id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES users
+);
+
+CREATE TABLE items
+(
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    cart_id    INTEGER REFERENCES orders   NOT NULL,
+    product_id INTEGER REFERENCES products NOT NULL,
+    quantity   INTEGER                     NOT NULL CHECK ( quantity > 0 ),
+    price      INTEGER                     NOT NULL CHECK ( price >= 0 )
+);
+
+INSERT INTO cart(id, user_id)
+VALUES (1, 3),
+       (2, 4),
+       (3, NULL);
+
+INSERT INTO items(cart_id, product_id, quantity, price)
+VALUES (1, 4, 2, 400),
+       (1, 6, 1, 720),
+       (2, 1, 5, 120),
+       (2, 4, 1, 400),
+       (3, 1, 2, 120),
+       (3, 2, 4, 160);
