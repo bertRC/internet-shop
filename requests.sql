@@ -24,6 +24,8 @@ CREATE TABLE users
     name  TEXT NOT NULL
 );
 
+DROP TABLE users;
+
 INSERT INTO users(login, name)
 VALUES ('iivanov88', 'Ivan Ivanov'),
        ('ppetrov89', 'Petr Petrov'),
