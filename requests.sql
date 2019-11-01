@@ -35,6 +35,10 @@ CREATE TABLE orders
     id      INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES users,
     status  TEXT DEFAULT 'NEW'
+-- 'NEW' for new orders
+-- 'PAID' for paid orders
+-- 'CANCELED' for canceled orders
+-- 'COMPLETED' for completed orders
 );
 
 CREATE TABLE sales
